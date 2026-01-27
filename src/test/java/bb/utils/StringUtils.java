@@ -98,6 +98,15 @@ public class StringUtils {
         return faker.name().fullName();
     }
 
+    public static String generateFirstName() {
+        return faker.name().firstName();
+    }
+
+    public static String generateLastName() {
+        return faker.name().lastName();
+    }
+
+
     public static String generateLocation() {
         return faker.address().fullAddress();
     }

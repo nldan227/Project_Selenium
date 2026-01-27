@@ -4,35 +4,25 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    @FindBy(xpath = "//a[@class='getStarted_Sjon']")
-    WebElementFacade btnDemo;
+    @FindBy(xpath = "//div[@class='login-form']//input[@type='email']")
+    WebElementFacade inputEmail;
 
-    @FindBy(xpath = "...")
-    WebElementFacade txtEmail;
+    @FindBy(xpath = "//div[@class='login-form']//input[@type='password']")
+    WebElementFacade inputPassword;
 
-    @FindBy(xpath = "...")
-    WebElementFacade txtPassword;
-
-    @FindBy(xpath = "...")
+    @FindBy(xpath = "//div[@class='login-form']//button[@type='submit']")
     WebElementFacade btnLogin;
 
+    public void inputEmail(String email){
+        clearAndType(inputEmail, email);
+    }
+
+    public void inputPassword(String password){
+        clearAndType(inputPassword, password);
+    }
+
     public void clickOnLoginButton(){
-        btnDemo.waitUntilClickable().click();
-    }
-
-    public LoginPage inoutEmailAddress(String email){
-        txtEmail.waitUntilVisible().sendKeys(email);
-        return this;
-    }
-
-    public LoginPage inoutPassword(String password){
-        txtEmail.waitUntilVisible().sendKeys(password);
-        return this;
-    }
-
-    public LoginPage clickOnLogin(){
-        btnLogin.waitUntilClickable().click();
-        return this;
+        clickOnce(btnLogin);
     }
 
 

@@ -6,11 +6,4 @@ import net.serenitybdd.annotations.Steps;
 
 public class CommonComponentsDefs {
 
-    @Steps
-    CommonComponentsSteps commonComponentsSteps;
-
-    @Given("User open browser with {string}")
-    public void userOpenBrowser(String name){
-        commonComponentsSteps.openBrowser(name);
-    }
 }

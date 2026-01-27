@@ -19,21 +19,25 @@ public class LoginSteps extends UIInteractionSteps {
     LoginPage loginPage;
 
     @Step
-    public void clickOnLoginButton() {
-        System.out.println("URL: " + DataUtils.getValueConf("webdriver.base.url"));
+    public void inputEmail(String email) {
+        loginPage.inputEmail(email);
+    }
 
-        // WebDriverFacade facade = (WebDriverFacade) getDriver();
-        // RemoteWebDriver remote = (RemoteWebDriver) facade.getProxiedDriver();
-        // System.out.println("Session ID: " + remote.getSessionId());
-        loginPage.open();
+    @Step
+    public void inputPassword(String password) {
+        loginPage.inputPassword(password);
+    }
+
+    @Step
+    public void clickOnLoginButton() {
         loginPage.clickOnLoginButton();
     }
 
     @Step
-    public void loginWithEmailAndPwd(String email, String pwd) {
-        loginPage.inoutEmailAddress(email)
-                .inoutPassword(pwd)
-                .clickOnLogin();
+    public void loginWithEmailAndPwd(String email, String password) {
+        loginPage.inputEmail(email);
+        loginPage.inputPassword(password);
+        loginPage.clickOnLoginButton();
     }
 
 
