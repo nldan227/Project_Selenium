@@ -5,6 +5,7 @@ import bb.utils.DataUtils;
 import bb.utils.LoggerUtil;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeStep;
+import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.events.AfterScenario;
 import net.serenitybdd.core.steps.UIInteractionSteps;
@@ -15,12 +16,12 @@ import net.thucydides.core.webdriver.WebDriverFacade;
 
 public class LoginSteps extends UIInteractionSteps {
 
-
+    @Steps
     LoginPage loginPage;
 
     @Step
     public void inputEmail(String email) {
-        loginPage.inputEmail(email);
+        loginPage.inputLoginEmail(email);
     }
 
     @Step
@@ -35,7 +36,7 @@ public class LoginSteps extends UIInteractionSteps {
 
     @Step
     public void loginWithEmailAndPwd(String email, String password) {
-        loginPage.inputEmail(email);
+        loginPage.inputLoginEmail(email);
         loginPage.inputPassword(password);
         loginPage.clickOnLoginButton();
     }
