@@ -33,4 +33,20 @@ public class BeforeClass {
        registerDefs.clickBtnContinue();
        homeDefs.clickBtnLogout();
     }
+
+    @Before(value = "@deleteInfo", order = 1)
+    public void deleteInfo() {
+        System.out.println("Before - delete INFO");
+    }
+
+    @Before(value = "@createAccount", order = 1)
+    public void deleteProduct() {
+
+        System.out.println("Before - Create ACCOUNT");
+    }
+
+    @Before(value = "@deleteCategory", order = 2)
+    public void deleteCategory() {
+        System.out.println("Before - delete CATEGORY");
+    }
 }
