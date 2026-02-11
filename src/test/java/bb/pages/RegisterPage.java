@@ -43,9 +43,7 @@ public class RegisterPage extends BasePage {
     }
 
     public void selectCheckboxByLabel(String labelText) {
-        WebElementFacade checkbox = $(
-                "//label[normalize-space()='" + labelText + "']/preceding-sibling::div//input[@type='checkbox']"
-        );
+        WebElementFacade checkbox = $("//label[normalize-space()='" + labelText + "']/preceding-sibling::div//input[@type='checkbox']");
         if (!checkbox.isSelected()) {
             checkbox.click();
         }

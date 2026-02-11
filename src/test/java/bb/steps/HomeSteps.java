@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.*;
 
 public class HomeSteps extends UIInteractionSteps {
 
-    @Steps
     HomePage homePage;
 
     @Step
@@ -28,6 +27,11 @@ public class HomeSteps extends UIInteractionSteps {
     }
 
     @Step
+    public void clickBtnContact() {
+        homePage.clickBtnContact();
+    }
+
+    @Step
     public void clickOnLogout() {
         homePage.clickBtnLogout();
     }
@@ -36,10 +40,22 @@ public class HomeSteps extends UIInteractionSteps {
     public void clickBtnTCs() {
         homePage.clickBtnTCs();
     }
+
     @Step
     public void clickBtnDeleteAcc() {
         homePage.clickBtnDeleteAcc();
     }
+
+    @Step
+    public void clickBtnProducts() {
+        homePage.clickBtnProduct();
+    }
+
+    @Step
+    public void clickBtnCart() {
+        homePage.clickBtnCart();
+    }
+
     @Step
     public void verifyTextLoggedInAsLbl(String expectedText) {
         assertThat(homePage.getTextLoggedInAsLbl().trim()).isEqualTo(expectedText);
@@ -50,5 +66,23 @@ public class HomeSteps extends UIInteractionSteps {
         assertThat(homePage.isLoggedInAsLblDisplayed()).isTrue();
     }
 
+    @Step
+    public void submitSubscription(){
+        homePage.submitSubscription();
+    }
 
+    @Step
+    public void scrollToFooter(){
+        homePage.scrollToFooter();
+    }
+
+    @Step
+    public void clickCategory(String categoryName){
+        homePage.clickCategory(categoryName);
+    }
+
+    @Step
+    public void clickSubCategory(String parentCategory, String subCategory) {
+        homePage.clickSubCategory(parentCategory, subCategory);
+    }
 }

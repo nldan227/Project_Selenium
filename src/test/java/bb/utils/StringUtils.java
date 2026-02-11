@@ -1,5 +1,7 @@
 package bb.utils;
 import org.apache.commons.text.RandomStringGenerator;
+
+import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -115,5 +117,16 @@ public class StringUtils {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
+    }
+
+
+    public static BigDecimal extractPrice(String text){
+        Pattern p = Pattern.compile("(\\d+(\\.\\d+)?)");
+        Matcher m = p.matcher(text);
+
+        if (m.find()) {
+            return new BigDecimal(m.group(1));
+        }
+        throw new RuntimeException("Cannot extract price from: " + text);
     }
 }

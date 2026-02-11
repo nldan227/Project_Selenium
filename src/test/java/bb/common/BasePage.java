@@ -261,9 +261,9 @@ public class BasePage extends PageObject {
 
     public void clearAndType(WebElementFacade element, String value) {
         scrollIntoView(element);
-        element.waitUntilEnabled();
+        element.waitUntilVisible();
         element.clear();
-        element.type(value);
+        element.sendKeys(value);
     }
 
     public void type(String locator, String value) {
@@ -424,4 +424,7 @@ public class BasePage extends PageObject {
         getDriver().navigate().refresh();
         waitForAllLoadingCompleted(TIMEOUT_IN_SECONDS);
     }
+
+
+
 }

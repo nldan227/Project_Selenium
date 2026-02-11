@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.Serenity;
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class HomeDefs extends BasePage {
@@ -19,6 +18,11 @@ public class HomeDefs extends BasePage {
     @Given("Navigate to Automation Exercise")
     public void navigateToAutomationExercise(){
         homeSteps.openHomePage();
+        homeSteps.verifyHomePageIsDisplayed();
+    }
+
+    @And("Home page is visible")
+    public void verifyHomePageIsVisible(){
         homeSteps.verifyHomePageIsDisplayed();
     }
 
@@ -38,6 +42,15 @@ public class HomeDefs extends BasePage {
         homeSteps.verifyLoggedInAsLblDisplayed();
     }
 
+    @Then("'Logged in as username' is displayed at top")
+    public void verifyLoggedInAsUsername() {
+        String username = Serenity.sessionVariableCalled("firstname");
+        String expectedText = "Logged in as " + username;
+
+        homeSteps.verifyTextLoggedInAsLbl(expectedText);
+        homeSteps.verifyLoggedInAsLblDisplayed();
+    }
+
     @When("Click Delete Account button")
     public void clickBtnDeleteAcc(){
         homeSteps.clickBtnDeleteAcc();
@@ -46,5 +59,40 @@ public class HomeDefs extends BasePage {
     @When("Click Logout button")
     public void clickBtnLogout(){
         homeSteps.clickOnLogout();
+    }
+
+    @When("Click on Contact Us button")
+    public void clickBtnContact() {
+        homeSteps.clickBtnContact();
+    }
+
+    @When("Click on Products button")
+    public void clickBtnProducts() {
+        homeSteps.clickBtnProducts();
+    }
+
+    @When("Click Cart button")
+    public void clickBtnCart() {
+        homeSteps.clickBtnCart();
+    }
+
+    @When("Scroll down to footer")
+    public void scrollToFooter() {
+        homeSteps.scrollToFooter();
+    }
+
+    @When("Enter email address in input and click arrow button")
+    public void submitSubscription(){
+        homeSteps.submitSubscription();
+    }
+
+    @When("Click on {string} category")
+    public void clickOnCategory(String category){
+        homeSteps.clickCategory(category);
+    }
+
+    @When("Click on {string} sub category under {string}")
+    public void clickOnSubCategory(String sub, String parent){
+        homeSteps.clickSubCategory(parent, sub);
     }
 }

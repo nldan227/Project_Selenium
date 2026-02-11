@@ -1,27 +1,26 @@
 package bb.defs;
 
 import bb.steps.RegisterSteps;
-import bb.utils.StringUtils;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.annotations.Step;
+import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.Serenity;
 
 public class RegisterDefs {
+
+    @Steps
     RegisterSteps registerSteps;
-    StringUtils stringUtils;
 
-
-    @When("Enter name {string} and email {string}")
-    public void registerWithNameAndEmail(String name, String email) {
+    @When("Enter name {string} and email {string} in the signup form.")
+    public void registerWithNameAndEmail(String name, String email)  {
         registerSteps.registerWithNameAndEmail(name, email);
     }
 
-    @When("Enter name Dann and email existEmail")
-    public void enterNameAndExistEmail(){
+    @When("Enter name {string} and email existEmail")
+    public void enterNameAndExistEmail(String name){
         String email = Serenity.sessionVariableCalled("existEmail");
-        registerSteps.registerWithNameAndEmail("Dann", email);
+        registerSteps.registerWithNameAndEmail(name, email);
     }
 
     @And("Click Signup button")
@@ -31,12 +30,7 @@ public class RegisterDefs {
 
     @When("Fill account details with title {string}, name {string}, password {string} and date of birth {string}")
     public void fillAccDetail(String title, String name, String password, String dob) {
-        String[] parts = dob.split("-");
-        String day = parts[0];
-        String month = parts[1];
-        String year = parts[2];
-
-        registerSteps.fillAccInfo(title, name, password, day, month, year);
+        registerSteps.fillAccInfo(title, name, password, dob);
     }
 
     @And("Select checkbox {string}")
@@ -59,6 +53,11 @@ public class RegisterDefs {
         registerSteps.clickBtnContinue();
     }
 
+
+    @Then("Fill all details in Signup and create acc")
+    public void register(){
+        registerSteps.register();
+    }
 
 }
 

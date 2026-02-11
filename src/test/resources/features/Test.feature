@@ -6,7 +6,7 @@ Feature: demo
     Given Navigate to Automation Exercise
     When Click on Signup/Login button
     Then "New User Signup!" heading is visible
-    When Enter name "<name>" and email "<email>"
+    When Enter name "<name>" and email "<email>" in the signup form.
     And Click Signup button
     Then "Enter Account Information" heading is visible
     When Fill account details with title "<title>", name "<name>", password "<password>" and date of birth "<dob>"
@@ -50,21 +50,157 @@ Feature: demo
       When Click Logout button
       Then "Login to your account" heading is visible
 
-    @TestCase-5 @existEmail
+    @TestCase-5 @createAcc
     Scenario:  Register User with existing email
       When Click on Signup/Login button
       Then "New User Signup!" heading is visible
-      When Enter name Dann and email existEmail
+      When Enter name "Dann" and email existEmail
       And Click Signup button
       Then Message "Email Address already exist!" is visible
 
-    @TestCase-7
+    @TestCase-6
+    Scenario: Contact Us Form
+      Given Navigate to Automation Exercise
+      When Click on Contact Us button
+      Then "Get In Touch" heading is visible
+      When Enter name "Dann", email "dann123@yopmail.com", subject "ABC", messsage "ABC123" and upload file in the Contact form
+      And Click Submit button
+      And Click OK button
+      Then Message "Success! Your details have been submitted successfully." is visible
+      When Click Home button
+      Then Home page is visible
+
+  @TestCase-7
     Scenario: Verify Test Cases Page
       Given Navigate to Automation Exercise
       When Click Test Cases button
       Then "Test Cases" heading is visible
 
+  @TestCase-8
+    Scenario: Verify All Products and product detail page
+      Given Navigate to Automation Exercise
+      When Click on Products button
+      Then "All Products" heading is visible
+      And The products list is visible
+      When Click on View Product of product 1
+      Then User is landed to product detail page
+      And Detail info is visible: product name, category, price, availability, condition, brand
+
+  @TestCase-9
+    Scenario: Search Product
+      Given Navigate to Automation Exercise
+      When Click on Products button
+      Then "All Products" heading is visible
+      When Enter product name "Top" in search input and click search button
+      Then "Searched Products" heading is visible
+      And The products list is visible
+      And All products name contain searched keyword
+
+  @TestCase-10
+    Scenario: Verify Subscription in home page
+      Given Navigate to Automation Exercise
+      When Scroll down to footer
+      Then "Subscription" heading is visible
+      When Enter email address in input and click arrow button
+      Then Message "You have been successfully subscribed!" is visible
+
+  @TestCase-11
+    Scenario: Verify Subscription in Cart page
+      Given Navigate to Automation Exercise
+      When Click Cart button
+      And Scroll down to footer
+      Then "Subscription" heading is visible
+      When Enter email address in input and click arrow button
+      Then Message "You have been successfully subscribed!" is visible
+
+  @TestCase-12
+    Scenario: Add Products in Cart
+      Given Navigate to Automation Exercise
+      When Click on Products button
+      And Hover over product 1 and click Add to cart
+      And Click Continue Shopping button
+      And Hover over product 2 and click Add to cart
+      And Click View Cart button
+      Then Both products are added to Cart
+      And their prices, quantity and total price is displayd correctly
 
 
+  @TestCase-13
+    Scenario:  Verify Product quantity in Cart
+      Given Navigate to Automation Exercise
+      When Click on View Product of product 2
+      Then User is landed to product detail page
+      When Increase quantity to 4
+      And Click Add to cart button on detail product page
+      And Click View Cart button
+      Then Product is displayed in cart page with exact quantity
+
+  @TestCase-14
+    Scenario: Place Order: Register while Checkout
+      Given Navigate to Automation Exercise
+      When Hover over product 3 and click Add to cart
+      And Click Continue Shopping button
+      And Click Cart button
+      Then Cart page is displayed
+      When Click Proceed To Checkout button
+      And Click Register/Login button
+      And Fill all details in Signup and create acc
+      Then "Account Created!" heading is visible
+      And Click Continue button
+      And 'Logged in as username' is displayed at top
+      When Click Cart button
+      And Click Proceed To Checkout button
+      Then Address Details and Review Your Order display correctly
+      When Enter description "description 123" in comment text area
+      And Click Place Order button
+      And Enter payment details: Name on Card, Card Number, CVC, Expiration date
+      And Click Pay and Confirm Order button
+      Then Message "Congratulations! Your order has been confirmed!" is visible
+      When Click Delete Account button
+      Then "Account Deleted!" heading is visible
+
+  @TestCase-15
+    Scenario: Place Order: Register before Checkout
+      Given Navigate to Automation Exercise
+      When Click on Signup/Login button
+      And Fill all details in Signup and create acc
+      Then "Account Created!" heading is visible
+      And Click Continue button
+      Then 'Logged in as username' is displayed at top
+      When Hover over product 3 and click Add to cart
+      And Click Continue Shopping button
+      And Click Cart button
+      Then Cart page is displayed
+      When Click Proceed To Checkout button
+      Then Address Details and Review Your Order display correctly
+      When Enter description "description 123" in comment text area
+      And Click Place Order button
+      And Enter payment details: Name on Card, Card Number, CVC, Expiration date
+      And Click Pay and Confirm Order button
+      Then Message "Congratulations! Your order has been confirmed!" is visible
+      When Click Delete Account button
+      Then "Account Deleted!" heading is visible
+
+    @TestCase-17
+      Scenario: Remove Products From Cart
+        Given Navigate to Automation Exercise
+        When Hover over product "Blue Top" and click Add to cart
+        And Click Continue Shopping button
+        And Click Cart button
+        Then Cart page is displayed
+        When Click X button corresponding to "Blue Top" product
+        Then That product is removed from the cart
+
+
+    @TestCase-18
+      Scenario: View Category Products
+      Given Navigate to Automation Exercise
+      Then "Category" heading is visible
+      When Click on "Women" category
+      And Click on "Tops" sub category under "Women"
+      Then "Women - Tops Products" heading is visible
+      When Click on "Men" category
+      And Click on "Jeans" sub category under "Men"
+      Then "Men - Jeans Products" heading is visible
 
 

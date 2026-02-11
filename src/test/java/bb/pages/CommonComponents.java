@@ -1,9 +1,6 @@
 package bb.pages;
-
 import bb.common.BasePage;
-import bb.utils.DataUtils;
-import bb.utils.LoggerUtil;
-import org.openqa.selenium.By;
+
 
 public class CommonComponents extends BasePage {
 
@@ -17,4 +14,7 @@ public class CommonComponents extends BasePage {
         return isVisible(xpath);
     }
 
+    public void acceptAlert() {
+        waitForAlertAndAccept();
+    }
 }

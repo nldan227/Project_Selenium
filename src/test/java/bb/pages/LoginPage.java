@@ -4,7 +4,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    @FindBy(xpath = "//div[@class='login-form']//input[@type='email']")
+    @FindBy(xpath = "//div[@class='login-form']//input[@data-qa='login-email']")
     WebElementFacade inputLoginEmail;
 
     @FindBy(xpath = "//div[@class='login-form']//input[@type='password']")
@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@class='login-form']//button[@type='submit']")
     WebElementFacade btnLogin;
 
-    @FindBy(xpath = "//div[@class='signup-form']//input[@type='text']")
+    @FindBy(xpath = "//div[@class='signup-form']//input[@data-qa='signup-name']")
     WebElementFacade inputName;
 
     @FindBy(xpath = "//div[@class='signup-form']//input[@type='email']")
@@ -34,7 +34,7 @@ public class LoginPage extends BasePage {
         clickOnce(btnLogin);
     }
 
-    public void inputName(String name){
+    public void inputNameSignup(String name){
         clearAndType(inputName, name);
     }
 

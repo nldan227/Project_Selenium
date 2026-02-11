@@ -1,6 +1,7 @@
 package bb.defs;
 
 //import bb.steps.CommonSteps;
+import bb.common.BasePage;
 import bb.steps.LoginSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -10,6 +11,7 @@ import net.serenitybdd.core.Serenity;
 
 public class LoginDefs {
 
+    @Steps
     LoginSteps loginSteps;
 
     @Given("user open browser")

@@ -1,7 +1,9 @@
 package bb.pages;
 
 import bb.common.BasePage;
+import bb.utils.StringUtils;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
@@ -24,6 +26,30 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[@href='/delete_account']")
     WebElementFacade btnDeleteAcc;
 
+    @FindBy(xpath = "//div[contains(@class, 'shop-menu')]//a[@href='/contact_us']")
+    WebElementFacade btnContact;
+
+    @FindBy(xpath = "//div[contains(@class, 'shop-menu')]//a[@href='/products']")
+    WebElementFacade btnProducts;
+
+    @FindBy(xpath = "//form[@class='searchform']//input[@id='susbscribe_email']")
+    WebElementFacade inputSubscribeEmail;
+
+    @FindBy(xpath = "//form[@class='searchform']//button[@id='subscribe']")
+    WebElementFacade btnSubscribe;
+
+    @FindBy(xpath = "//div[contains(@class, 'shop-menu')]//a[@href='/view_cart']")
+    WebElementFacade btnCart;
+
+    @FindBy(id = "footer")
+    WebElementFacade footer;
+
+    public void clickBtnProduct(){
+        clickOnce(btnProducts);
+    }
+
+    public void clickBtnContact() {clickOnce(btnContact);}
+
     public void clickBtnLogout() {
         clickOnce(btnLogout);
     }
@@ -33,6 +59,10 @@ public class HomePage extends BasePage {
     }
     public void clickBtnDeleteAcc(){
         clickOnce(btnDeleteAcc);
+    }
+
+    public void clickBtnCart() {
+        clickOnce(btnCart);
     }
 
     public void clickOnSignupOrLogin(){
@@ -53,6 +83,24 @@ public class HomePage extends BasePage {
         return loggedInAsLbl.getText();
     }
 
+    public void submitSubscription(){
+        clearAndType(inputSubscribeEmail, StringUtils.generateEmailAddress());
+        clickOnce(btnSubscribe);
+    }
 
+    public void scrollToFooter(){
+        scrollIntoView(footer);
+    }
+
+
+    public void clickCategory(String categoryName){
+        clickOn(find(By.xpath("//a[normalize-space()='" + categoryName + "']")));
+    }
+
+    public void clickSubCategory(String parentCategory, String subCategory){
+        clickOn(find(By.xpath(
+                "//div[@id='" + parentCategory + "']//a[normalize-space()='" + subCategory + "']"
+        )));
+    }
 
 }
