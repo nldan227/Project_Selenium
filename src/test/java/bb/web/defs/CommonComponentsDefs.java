@@ -1,0 +1,36 @@
+package bb.web.defs;
+
+import bb.web.steps.CommonComponentsSteps;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import net.serenitybdd.annotations.Steps;
+
+public class CommonComponentsDefs {
+
+    @Steps
+    CommonComponentsSteps commonComponentsSteps;
+
+    @Then("{string} heading is visible")
+    @Then("Login page is visible")
+    public void verifyHeadingIsVisible(String headingText) {
+        commonComponentsSteps.verifyHeadingIsVisible(headingText);
+    }
+
+    @Then("Message {string} is visible")
+    public void verifyMessageIsVisbile(String message) {
+        commonComponentsSteps.verifyMessageIsVisbile(message);
+    }
+
+    @And("Click OK button")
+    public void acceptAlert() {
+        commonComponentsSteps.acceptAlert();
+    }
+
+
+    @Then("Invoice is downloaded successfully")
+    public void verifyFileDownloadSuccessfully(){
+        String path = "C:/Users/dan.linh.nguyen/Downloads";
+        String filePrefix = "invoice";
+        commonComponentsSteps.verifyFileDownloadSuccessfully(path, filePrefix);
+    }
+}

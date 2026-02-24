@@ -1,12 +1,10 @@
 package bb.Hooks;
 
-
-import bb.steps.HomeSteps;
-import bb.steps.RegisterSteps;
 import bb.utils.DataUtils;
+import bb.web.steps.HomeSteps;
+import bb.web.steps.RegisterSteps;
 import io.cucumber.java.Before;
 import net.serenitybdd.annotations.Steps;
-
 
 public class BeforeClass {
 
@@ -29,7 +27,5 @@ public class BeforeClass {
     public void deleteInvoice() {
         DataUtils.deleteFiles("C:/Users/dan.linh.nguyen/Downloads", "invoice");
     }
-
-
 
 }
