@@ -77,6 +77,11 @@ public class HomeSteps extends UIInteractionSteps {
     }
 
     @Step
+    public void scrollToTop(){
+        homePage.scrollToTop();
+    }
+
+    @Step
     public void clickCategory(String categoryName){
         homePage.clickCategory(categoryName);
     }
@@ -85,4 +90,15 @@ public class HomeSteps extends UIInteractionSteps {
     public void clickSubCategory(String parentCategory, String subCategory) {
         homePage.clickSubCategory(parentCategory, subCategory);
     }
+
+    @Step
+    public void verifyRcmItemsAreVisible() {
+        assertThat(homePage.isRecommendedItemsVisible()).isTrue();
+    }
+
+    @Step
+    public void clickIcScrollUp() {
+        homePage.clickIcScrollUp();
+    }
+
 }

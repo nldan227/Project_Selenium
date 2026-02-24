@@ -185,4 +185,23 @@ public class DataUtils {
         return message;
     }
 
+    public static void deleteFiles(String downloadPath, String filePrefix) {
+        File folder = new File(downloadPath);
+
+        if (!folder.exists() || !folder.isDirectory()) {
+            System.out.println("Folder không tồn tại: " + downloadPath);
+            return;
+        }
+
+        File[] files = folder.listFiles();
+        if (files == null) return;
+
+        for (File file : files) {
+            if (file.getName().startsWith(filePrefix)) {
+                boolean deleted = file.delete();
+                System.out.println("Delete " + file.getName() + " = " + deleted);
+            }
+        }
+    }
+
 }

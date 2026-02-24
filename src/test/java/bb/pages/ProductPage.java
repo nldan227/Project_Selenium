@@ -69,6 +69,33 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//div[@class='modal-dialog modal-confirm']//a[@href='/view_cart']")
     WebElementFacade btnViewCart;
 
+    @FindBy(xpath = "//form[@id='review-form']//input[@id='name']")
+    WebElementFacade inputName;
+
+    @FindBy(xpath = "//form[@id='review-form']//input[@id='email']")
+    WebElementFacade inputEmail;
+
+    @FindBy(xpath = "//form[@id='review-form']//textarea[@id='review']")
+    WebElementFacade inputReview;
+
+    @FindBy(xpath = "//form[@id='review-form']//button[@id='button-review']")
+    WebElementFacade btnSubmit;
+
+    public void clickBtnSubmit() {
+        clickOnce(btnSubmit);
+    }
+
+    public void inputName(String name) {
+        clearAndType(inputName, name);
+    }
+
+    public void inputEmail(String email) {
+        clearAndType(inputEmail, email);
+    }
+
+    public void inputReview(String review) {
+        clearAndType(inputReview, review);
+    }
 
     public boolean isListProductVisible() {
         if (products == null || products.isEmpty()) {
@@ -112,8 +139,19 @@ public class ProductPage extends BasePage {
     }
 
     public void clickBtnAddCartOverlayByName(String productName){
+        clickBtnAddCartOverlayByName(productName, null);
+    }
+    public void clickBtnAddCartOverlayByName(String productName, String area){
 
-        WebElementFacade product = find(By.xpath("//div[@class='productinfo text-center'][.//p[normalize-space()='" + productName + "']]"));
+        String scopeXpath;
+
+        if ("recommended".equalsIgnoreCase(area)) {
+            scopeXpath = "//div[@id='recommended-item-carousel']";
+        } else {
+            scopeXpath = "//div[@class='features_items']";
+        }
+
+        WebElementFacade product = find(By.xpath(scopeXpath + "//div[@class='productinfo text-center'][.//p[normalize-space()='" + productName + "']]"));
 
         String name = product.find(By.xpath(".//p")).getText().trim();
         String priceText = product.find(By.xpath(".//h2")).getText();
@@ -126,7 +164,6 @@ public class ProductPage extends BasePage {
         clickOnce(btnAddToCart);
 
     }
-
     public void clickBtnAddCartOverlayByIndex(int number){
 
         int index = number - 1;
@@ -156,7 +193,6 @@ public class ProductPage extends BasePage {
 
         Serenity.setSessionVariable("cart").to(cartMemory);
     }
-
 
 
     public void clickBtnContinueShopping(){

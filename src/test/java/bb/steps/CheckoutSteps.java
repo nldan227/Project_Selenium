@@ -25,5 +25,10 @@ public class CheckoutSteps extends UIInteractionSteps {
         checkOutPage.clickBtnPlaceOrder();
     }
 
+    @Step
+    public void clickBtnDownloadInvoice() {
+        checkOutPage.clickBtnDownloadInvoice();
+    }
+
 
 }

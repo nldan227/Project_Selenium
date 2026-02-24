@@ -81,12 +81,18 @@ public class HomeDefs extends BasePage {
         homeSteps.scrollToFooter();
     }
 
+    @When("Scroll up page to top")
+    public void scrollToTop() {
+        homeSteps.scrollToTop();
+    }
+
     @When("Enter email address in input and click arrow button")
     public void submitSubscription(){
         homeSteps.submitSubscription();
     }
 
     @When("Click on {string} category")
+    @When("Click on {string} brand")
     public void clickOnCategory(String category){
         homeSteps.clickCategory(category);
     }
@@ -95,4 +101,15 @@ public class HomeDefs extends BasePage {
     public void clickOnSubCategory(String sub, String parent){
         homeSteps.clickSubCategory(parent, sub);
     }
+
+    @Then("Recommend items are visible")
+    public void verifyRcmItemsAreVisible(){
+        homeSteps.verifyRcmItemsAreVisible();
+    }
+
+    @When("Click on arrow at bottom right side to move upward")
+    public void clickOnArrow(){
+        homeSteps.clickIcScrollUp();
+    }
+
 }

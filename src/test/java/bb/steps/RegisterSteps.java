@@ -35,7 +35,9 @@ public class RegisterSteps extends UIInteractionSteps {
         String city = "Toronto";
         String zipcode = "M5H2N2";
         String phone = StringUtils.generatePhoneNumber();
+        String password = StringUtils.generateRandomNumeric(10);
 
+        Serenity.setSessionVariable("password").to(password);
         Serenity.setSessionVariable("title").to(title);
         Serenity.setSessionVariable("firstname").to(firstName);
         Serenity.setSessionVariable("lastname").to(lastName);
@@ -51,7 +53,7 @@ public class RegisterSteps extends UIInteractionSteps {
         registerWithNameAndEmail(firstName, email);
         loginPage.clickOnSignupBtn();
 
-        fillAccInfo(title, firstName, StringUtils.generateRandomNumeric(10), "1-January-2000");
+        fillAccInfo(title, firstName, password, "1-January-2000");
         fillAddressInfo(firstName, lastName, company, address1, address2, country, state, city, zipcode, phone);
 
         clickBtnCreateAcc();

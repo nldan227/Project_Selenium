@@ -1,6 +1,7 @@
 package bb.defs;
 
 import bb.steps.ProductSteps;
+import bb.utils.StringUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -54,6 +55,11 @@ public class ProductDefs {
         productSteps.clickBtnAddToCartOverlayByName(name);
     }
 
+    @When("Click on Add To Cart of product {string} on Recommended product")
+    public void clickBtnAddToCartRcmProductByName(String name){
+        productSteps.clickBtnAddToCartRcmProductByName(name);
+    }
+
     @And("Click Continue Shopping button")
     public void clickBtnContinueShopping(){
         productSteps.clickBtnContinueShopping();
@@ -73,6 +79,21 @@ public class ProductDefs {
     public void clickBtnAddToCartOnDetailProduct(){
         productSteps.clickBtnAddToCartOnDetailProduct();
     }
+
+    @And("Fill review form: Enter name, email and review")
+    public void fillReviewForm(){
+        String name = StringUtils.generateFullName();
+        String email = StringUtils.generateEmailAddress();
+        String review = StringUtils.generateRandomAlphabetic(30);
+        productSteps.fillReviewForm(name, email, review);
+    }
+
+    @And("Click Submit review button")
+    public void clickBtnSubmit(){
+        productSteps.clickBtnSubmit();
+    }
+
+
 
 
 }

@@ -16,6 +16,13 @@ public class CheckOutPage extends BasePage {
     @FindBy(xpath = "//a[@href='/payment']")
     WebElementFacade btnPlaceOrder;
 
+    @FindBy(xpath = "//a[contains(@class, 'check_out')]")
+    WebElementFacade btnDownloadInvoice;
+
+    public void clickBtnDownloadInvoice(){
+        clickOnce(btnDownloadInvoice);
+    }
+
     public boolean isAddressInfoDisplayedCorrectly(){
 
         String title = Serenity.sessionVariableCalled("title");
@@ -36,14 +43,7 @@ public class CheckOutPage extends BasePage {
                 && isAddressBlockDisplayedCorrectly("address_invoice",  expectedName, company, address1, address2, expectedCityStateZip, country, phone);
     }
 
-    public boolean isAddressBlockDisplayedCorrectly(String blockId,
-                                                    String expectedName,
-                                                    String expectedCompany,
-                                                    String expectedAddress1,
-                                                    String expectedAddress2,
-                                                    String expectedCityStateZip,
-                                                    String expectedCountry,
-                                                    String expectedPhone){
+    public boolean isAddressBlockDisplayedCorrectly(String blockId, String expectedName, String expectedCompany, String expectedAddress1, String expectedAddress2, String expectedCityStateZip, String expectedCountry, String expectedPhone){
 
         String name = find(By.xpath("//ul[@id='"+blockId+"']//li[contains(@class,'address_firstname')]")).getText().trim();
         List<WebElementFacade> addressLines = findAll(By.xpath("//ul[@id='"+blockId+"']//li[contains(@class,'address_address1')]"));
@@ -54,7 +54,7 @@ public class CheckOutPage extends BasePage {
         String country = find(By.xpath("//ul[@id='"+blockId+"']//li[contains(@class,'address_country_name')]")).getText().trim();
         String phone = find(By.xpath("//ul[@id='"+blockId+"']//li[contains(@class,'address_phone')]")).getText().trim();
 
-        System.out.println("===== VERIFY ADDRESS BLOCK: " + blockId + " =====");
+        System.out.println("-------- VERIFY ADDRESS BLOCK: " + blockId + " --------");
         System.out.println("Name       | UI = [" + name + "] | Expected = [" + expectedName + "]");
         System.out.println("Company    | UI = [" + company + "] | Expected = [" + expectedCompany + "]");
         System.out.println("Address1    | UI = [" + address1 + "] | Expected = [" + expectedAddress1 + "]");
@@ -81,6 +81,7 @@ public class CheckOutPage extends BasePage {
     public void clickBtnPlaceOrder(){
         clickOnce(btnPlaceOrder);
     }
+
 
 
 }

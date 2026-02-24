@@ -11,7 +11,8 @@ public class CheckoutDefs {
     @Steps
     CheckoutSteps checkoutSteps;
 
-    @Then("Address Details and Review Your Order display correctly")
+    @Then("Address Details display correctly")
+    @Then("Delivery address and billing address is same address filled at the time registration of account")
     public void verifyAddressInfo(){
         checkoutSteps.verifyAddressInfo();
     }
@@ -24,5 +25,10 @@ public class CheckoutDefs {
     @And("Click Place Order button")
     public void clickBtnPlaceOrder(){
         checkoutSteps.clickBtnPlaceOrder();
+    }
+
+    @When("Click Download Invoice button")
+    public void clickBtnDownloadInvoice(){
+        checkoutSteps.clickBtnDownloadInvoice();
     }
 }

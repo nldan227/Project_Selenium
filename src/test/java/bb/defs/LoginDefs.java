@@ -24,4 +24,12 @@ public class LoginDefs {
         loginSteps.loginWithEmailAndPwd(email, password);
     }
 
+    @And("Login with created account")
+    public void loginWithCreatedAcc(){
+        String email = Serenity.sessionVariableCalled("existEmail");
+        String password = Serenity.sessionVariableCalled("password");
+
+        loginSteps.loginWithEmailAndPwd(email, password);
+    }
+
 }

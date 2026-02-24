@@ -53,6 +53,11 @@ public class ProductSteps extends UIInteractionSteps {
     }
 
     @Step
+    public void clickBtnAddToCartRcmProductByName(String name){
+        productPage.clickBtnAddCartOverlayByName(name, "recommended");
+    }
+
+    @Step
     public void clickBtnContinueShopping(){
         productPage.clickBtnContinueShopping();
     }
@@ -73,5 +78,16 @@ public class ProductSteps extends UIInteractionSteps {
         productPage.clickBtnAddToCartOnDetailProduct();
     }
 
+    @Step
+    public void fillReviewForm(String name, String email, String review) {
+        productPage.inputName(name);
+        productPage.inputEmail(email);
+        productPage.inputReview(review);
+    }
+
+    @Step
+    public void clickBtnSubmit() {
+        productPage.clickBtnSubmit();
+    }
 
 }

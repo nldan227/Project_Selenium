@@ -1,6 +1,8 @@
 package bb.pages;
 import bb.common.BasePage;
 
+import java.io.File;
+
 
 public class CommonComponents extends BasePage {
 
@@ -17,4 +19,36 @@ public class CommonComponents extends BasePage {
     public void acceptAlert() {
         waitForAlertAndAccept();
     }
+
+    public boolean isFileDownloaded(String downloadPath, String filePrefix, int timeoutSeconds) {
+
+        File folder = new File(downloadPath);
+
+        if (!folder.exists() || !folder.isDirectory()) {
+            return false;
+        }
+
+        long endTime = System.currentTimeMillis() + timeoutSeconds * 1000;
+
+        while (System.currentTimeMillis() < endTime) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    String name = file.getName();
+                    if (name.startsWith(filePrefix)) {
+                        return true;
+                    }
+                }
+            }
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
 }

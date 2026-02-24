@@ -13,12 +13,13 @@ public class CartDefs {
     @Steps
     CartSteps cartSteps;
 
-    @Then("Both products are added to Cart")
+    @Then("Products are added to Cart")
     public void verifyItemInCartDisplayCorrectly(){
         cartSteps.verifyItemInCartDisplayCorrectly();
     }
 
     @And("their prices, quantity and total price is displayd correctly")
+    @And("Review Your Order display correctly")
     public void verifyCartInfoDisplayCorrectly() {
         cartSteps.verifyCartInfoDisplayCorrectly();
     }

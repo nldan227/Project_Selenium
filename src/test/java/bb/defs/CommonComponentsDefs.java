@@ -26,4 +26,12 @@ public class CommonComponentsDefs {
     public void acceptAlert() {
         commonComponentsSteps.acceptAlert();
     }
+
+
+    @Then("Invoice is downloaded successfully")
+    public void verifyFileDownloadSuccessfully(){
+        String path = "C:/Users/dan.linh.nguyen/Downloads";
+        String filePrefix = "invoice";
+        commonComponentsSteps.verifyFileDownloadSuccessfully(path, filePrefix);
+    }
 }

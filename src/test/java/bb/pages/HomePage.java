@@ -3,8 +3,13 @@ package bb.pages;
 import bb.common.BasePage;
 import bb.utils.StringUtils;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePage extends BasePage {
 
@@ -44,8 +49,28 @@ public class HomePage extends BasePage {
     @FindBy(id = "footer")
     WebElementFacade footer;
 
+    @FindBy(id = "header")
+    WebElementFacade header;
+
+    @FindBy(id = "scrollUp")
+    WebElementFacade iconScrollUp;
+
+    @FindBy(xpath = "//div[@id='recommended-item-carousel']//div[@class='single-products']")
+    List<WebElementFacade> recommendedProducts;
+
+    public boolean isRecommendedItemsVisible() {
+        if (recommendedProducts.isEmpty()) {
+            return false;
+        }
+        return recommendedProducts.get(0).isVisible();
+    }
+
     public void clickBtnProduct(){
         clickOnce(btnProducts);
+    }
+
+    public void clickIcScrollUp(){
+        clickOnce(iconScrollUp);
     }
 
     public void clickBtnContact() {clickOnce(btnContact);}
@@ -92,9 +117,13 @@ public class HomePage extends BasePage {
         scrollIntoView(footer);
     }
 
+    public void scrollToTop(){
+        scrollIntoView(header);
+    }
 
     public void clickCategory(String categoryName){
-        clickOn(find(By.xpath("//a[normalize-space()='" + categoryName + "']")));
+        clickOn(find(By.xpath("//a[contains(normalize-space(.),'" + categoryName + "')]")));
+
     }
 
     public void clickSubCategory(String parentCategory, String subCategory){

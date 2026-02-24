@@ -3,6 +3,7 @@ package bb.Hooks;
 
 import bb.steps.HomeSteps;
 import bb.steps.RegisterSteps;
+import bb.utils.DataUtils;
 import io.cucumber.java.Before;
 import net.serenitybdd.annotations.Steps;
 
@@ -20,21 +21,15 @@ public class BeforeClass {
         homeSteps.openHomePage();
         homeSteps.clickOnSignupOrLogin();
         registerSteps.register();
+        registerSteps.clickBtnContinue();
+        homeSteps.clickOnLogout();
     }
 
-    @Before(value = "@deleteInfo", order = 1)
-    public void deleteInfo() {
-        System.out.println("Before - delete INFO");
+    @Before(value = "@deleteInvoice", order = 1)
+    public void deleteInvoice() {
+        DataUtils.deleteFiles("C:/Users/dan.linh.nguyen/Downloads", "invoice");
     }
 
-    @Before(value = "@createAccount", order = 1)
-    public void deleteProduct() {
 
-        System.out.println("Before - Create ACCOUNT");
-    }
 
-    @Before(value = "@deleteCategory", order = 2)
-    public void deleteCategory() {
-        System.out.println("Before - delete CATEGORY");
-    }
 }

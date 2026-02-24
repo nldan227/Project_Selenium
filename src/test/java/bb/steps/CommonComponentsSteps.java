@@ -31,4 +31,8 @@ public class CommonComponentsSteps extends UIInteractionSteps {
         commonComponents.acceptAlert();
     }
 
+    @Step
+    public void verifyFileDownloadSuccessfully(String path, String filePrefix) {
+        assertThat(commonComponents.isFileDownloaded(path, filePrefix, 20)).isTrue();
+    }
 }
