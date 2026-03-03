@@ -1,6 +1,5 @@
 package bb.api.requests;
 
-import bb.api.dataobjects.enumdata.Role;
 import lombok.Data;
 
 @Data

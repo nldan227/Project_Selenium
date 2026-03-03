@@ -1,6 +1,5 @@
 package bb.api.dataobjects.model;
 
-import bb.api.dataobjects.enumdata.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
